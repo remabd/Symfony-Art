@@ -41,6 +41,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Basket::class, mappedBy: 'user')]
     private Collection $baskets;
 
+    #[ORM\Column]
+    private ?bool $admin = null;
+
     public function __construct()
     {
         $this->baskets = new ArrayCollection();
@@ -147,6 +150,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $basket->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isAdmin(): ?bool
+    {
+        return $this->admin;
+    }
+
+    public function setAdmin(bool $admin): static
+    {
+        $this->admin = $admin;
 
         return $this;
     }
