@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/basket')]
+#[Route('/admin/basket')]
 final class BasketController extends AbstractController
 {
     #[Route(name: 'app_basket_index', methods: ['GET'])]
@@ -71,7 +71,7 @@ final class BasketController extends AbstractController
     #[Route('/{id}', name: 'app_basket_delete', methods: ['POST'])]
     public function delete(Request $request, Basket $basket, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$basket->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $basket->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($basket);
             $entityManager->flush();
         }
