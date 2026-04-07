@@ -1,0 +1,272 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600&display=swap");
+
+/* ─── Header ─────────────────────────────────────────────── */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #1a1814;
+    border-bottom: 1px solid #2e2b26;
+    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.18);
+}
+
+.nav-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+/* ─── Brand ──────────────────────────────────────────────── */
+.nav-brand {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #f5f2ec;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    border: none;
+    background: none;
+    padding: 0;
+    transition: color 0.14s;
+}
+
+.nav-brand:hover {
+    color: #fff;
+    background: none;
+    border: none;
+}
+
+.brand-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #c84b2f;
+    flex-shrink: 0;
+}
+
+/* ─── Left side ──────────────────────────────────────────── */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex: 1;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #9a9489;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 3px;
+    border: none;
+    background: none;
+    transition:
+        color 0.14s,
+        background 0.14s;
+}
+
+.nav-links a:hover {
+    color: #f5f2ec;
+    background: #2a2722;
+}
+
+.nav-links a.active {
+    color: #f5f2ec;
+    background: #2a2722;
+}
+
+.nav-links a.active::after {
+    content: "";
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: #c84b2f;
+    margin: 2px auto 0;
+    border-radius: 1px;
+}
+
+/* Admin link accent */
+.nav-links a.nav-admin {
+    color: #c8974f;
+}
+
+.nav-links a.nav-admin:hover,
+.nav-links a.nav-admin.active {
+    color: #e0ae72;
+    background: #2a2520;
+}
+
+/* ─── Right side ─────────────────────────────────────────── */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+/* Logged-in user chip */
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "DM Mono", monospace;
+    font-size: 12px;
+    color: #7a7468;
+}
+
+.nav-user-avatar {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #c84b2f;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.nav-badge {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: #2d6a4f;
+    color: #a8d5bf;
+    padding: 2px 6px;
+    border-radius: 2px;
+}
+
+/* ─── Auth buttons ───────────────────────────────────────── */
+.nav-btn {
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 3px;
+    transition: all 0.14s;
+    white-space: nowrap;
+}
+
+.nav-btn--ghost {
+    color: #9a9489;
+    border: 1px solid #2e2b26;
+    background: transparent;
+}
+
+.nav-btn--ghost:hover {
+    color: #f5f2ec;
+    border-color: #4a4640;
+    background: #2a2722;
+}
+
+.nav-btn--primary {
+    color: #fff;
+    background: #c84b2f;
+    border: 1px solid #c84b2f;
+}
+
+.nav-btn--primary:hover {
+    background: #a03820;
+    border-color: #a03820;
+    color: #fff;
+}
+
+/* ─── Mobile burger ──────────────────────────────────────── */
+.nav-burger {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    margin-left: auto;
+}
+
+.nav-burger span {
+    display: block;
+    width: 20px;
+    height: 1.5px;
+    background: #9a9489;
+    border-radius: 1px;
+    transition: all 0.2s;
+}
+
+/* ─── Mobile layout ──────────────────────────────────────── */
+@media (max-width: 640px) {
+    .nav-inner {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 12px 20px;
+        gap: 0;
+    }
+
+    .nav-brand {
+        flex: 1;
+    }
+
+    .nav-burger {
+        display: flex;
+    }
+
+    .nav-left,
+    .nav-right {
+        display: none;
+        width: 100%;
+        padding: 12px 0;
+        border-top: 1px solid #2e2b26;
+    }
+
+    .nav-left {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+    .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+    .nav-links a {
+        width: 100%;
+    }
+    .nav-right {
+        gap: 8px;
+    }
+
+    .nav-open .nav-left,
+    .nav-open .nav-right {
+        display: flex;
+    }
+
+    .nav-user {
+        font-size: 11px;
+    }
+}

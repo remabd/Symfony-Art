@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArtRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -26,6 +28,17 @@ class Art
     #[ORM\ManyToOne(inversedBy: 'arts')]
     #[ORM\JoinColumn(nullable: false)]
     private ?category $category = null;
+
+    /**
+     * @var Collection<int, Pictures>
+     */
+    #[ORM\OneToMany(targetEntity: Pictures::class, mappedBy: 'art', orphanRemoval: true)]
+    private Collection $pictures;
+
+    public function __construct()
+    {
+        $this->pictures = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -76,6 +89,36 @@ class Art
     public function setCategory(?category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Pictures>
+     */
+    public function getPictures(): Collection
+    {
+        return $this->pictures;
+    }
+
+    public function addPicture(Pictures $picture): static
+    {
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures->add($picture);
+            $picture->setArt($this);
+        }
+
+        return $this;
+    }
+
+    public function removePicture(Pictures $picture): static
+    {
+        if ($this->pictures->removeElement($picture)) {
+            // set the owning side to null (unless already changed)
+            if ($picture->getArt() === $this) {
+                $picture->setArt(null);
+            }
+        }
 
         return $this;
     }
