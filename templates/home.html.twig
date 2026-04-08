@@ -3,5 +3,35 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-    <h1>Home</h1>
+<main class="home">
+    <h1>Products</h1>
+
+    {% for category in categories %}
+        <details class="accordion" {% if loop.first %}open{% endif %}>
+            <summary class="accordion__title">{{ category.name }}</summary>
+            <div class="accordion__body">
+                {% if category.arts is empty %}
+                    <p class="accordion__empty">No products in this category.</p>
+                {% else %}
+                    <div class="product-grid">
+                        {% for art in category.arts %}
+                            <div class="product-card">
+                                <span class="product-card__name">{{ art.name }}</span>
+                                <span class="product-card__price">{{ art.price }} €</span>
+                                {% if app.user %}
+                                    <form method="post" action="{{ path('app_basket_add', {id: art.id}) }}">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('basket_add_' ~ art.id) }}">
+                                        <button type="submit" class="btn btn--primary">Add to basket</button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </details>
+    {% else %}
+        <p>No categories found.</p>
+    {% endfor %}
+</main>
 {% endblock %}

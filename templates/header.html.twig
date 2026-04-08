@@ -1,14 +1,8 @@
 <header class="site-header">
     <nav class="nav-inner">
 
-        {# ── Left: brand + main links ── #}
         <div class="nav-left">
             <ul class="nav-links">
-                <li>
-                    <a href="{{ path('app_home') }}">
-                        Home
-                    </a>
-                </li>
                 <li>
                     <a href="{{ path('app_home') }}">
                         Products
@@ -18,7 +12,7 @@
                 {# Admin-only link — only visible to admins #}
                 {% if is_granted('ROLE_ADMIN') %}
                 <li>
-                    <a href="{{ path('app_user_index') }}">
+                    <a href="{{ path('app_admin') }}">
                         ⚙ Admin
                     </a>
                 </li>
@@ -26,17 +20,13 @@
             </ul>
         </div>
 
-        {# ── Right: auth block ── #}
         <div class="nav-right">
+                {% if app.user %}
+                <a href="{{ path('app_my_basket') }}">
+                    Panier
+                </a>
+                {% endif %}
             {% if app.user %}
-                <span class="nav-user">
-                    <span class="nav-user-avatar">{{ app.user.email|first|upper }}</span>
-                    {{ app.user.email }}
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <span class="nav-badge">admin</span>
-                    {% endif %}
-                </span>
-
                 <a href="{{ path('app_logout') }}" class="nav-btn nav-btn--ghost">
                     Log out
                 </a>
@@ -45,11 +35,5 @@
                 <a href="{{ path('app_register') }}" class="nav-btn nav-btn--primary">Register</a>
             {% endif %}
         </div>
-
-        {# ── Mobile burger ── #}
-        <button class="nav-burger" aria-label="Toggle menu" onclick="this.closest('.site-header').classList.toggle('nav-open')">
-            <span></span><span></span><span></span>
-        </button>
-
     </nav>
 </header>

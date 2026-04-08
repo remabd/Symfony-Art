@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block body %}
+<div class="admin-dashboard">
+    <h1>Backoffice</h1>
+    <ul>
+        <li><a href="{{ path('app_art_index') }}">Arts</a></li>
+        <li><a href="{{ path('app_category_index') }}">Categories</a></li>
+        <li><a href="{{ path('app_user_index') }}">Users</a></li>
+        <li><a href="{{ path('app_basket_index') }}">Baskets</a></li>
+    </ul>
+</div>
+{% endblock %}

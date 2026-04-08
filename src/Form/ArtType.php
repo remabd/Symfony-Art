@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Art;
-use App\Entity\category;
+use App\Entity\Category;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,8 +18,8 @@ class ArtType extends AbstractType
             ->add('content')
             ->add('price')
             ->add('category', EntityType::class, [
-                'class' => category::class,
-                'choice_label' => 'id',
+                'class' => Category::class,
+                'choice_label' => 'name',
             ])
         ;
     }
