@@ -27,7 +27,14 @@
                     <tr>
                         <td>{{ artBasket.art.name }}</td>
                         <td>{{ artBasket.art.price }} €</td>
-                        <td>{{ artBasket.amount }}</td>
+                        <td class="quantity-cell">
+                            <form method="post" action="{{ path('app_basket_update', {id: artBasket.id}) }}" class="quantity-form">
+                                <input type="hidden" name="_token" value="{{ csrf_token('basket_update_' ~ artBasket.id) }}">
+                                <button type="submit" name="quantity" value="{{ artBasket.amount - 1 }}" class="btn btn--qty">-</button>
+                                <span class="quantity-value">{{ artBasket.amount }}</span>
+                                <button type="submit" name="quantity" value="{{ artBasket.amount + 1 }}" class="btn btn--qty">+</button>
+                            </form>
+                        </td>
                         <td>{{ subtotal }} €</td>
                         <td>
                             <form method="post" action="{{ path('app_basket_remove', {id: artBasket.id}) }}">

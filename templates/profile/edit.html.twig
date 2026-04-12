@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block body %}
+<main class="profile-page">
+    <h1>Mon profil</h1>
+
+    {% for message in app.flashes('success') %}
+        <div class="flash-success">{{ message }}</div>
+    {% endfor %}
+
+    <div class="profile-form">
+        {{ form_start(profileForm) }}
+
+        <div class="form-group">
+            {{ form_label(profileForm.firstName) }}
+            {{ form_widget(profileForm.firstName) }}
+            {{ form_errors(profileForm.firstName) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(profileForm.lastName) }}
+            {{ form_widget(profileForm.lastName) }}
+            {{ form_errors(profileForm.lastName) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(profileForm.email) }}
+            {{ form_widget(profileForm.email) }}
+            {{ form_errors(profileForm.email) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(profileForm.plainPassword) }}
+            {{ form_widget(profileForm.plainPassword) }}
+            {{ form_errors(profileForm.plainPassword) }}
+        </div>
+
+        <button type="submit" class="btn btn--primary">Enregistrer</button>
+
+        {{ form_end(profileForm) }}
+    </div>
+
+    <a href="{{ path('app_home') }}" class="btn btn--ghost">← Retour</a>
+</main>
+{% endblock %}

@@ -61,6 +61,30 @@ final class UserBasketController extends AbstractController
         return $this->redirectToRoute('app_home');
     }
 
+    #[Route('/update/{id}', name: 'app_basket_update', methods: ['POST'])]
+    public function update(ArtBasket $artBasket, EntityManagerInterface $em, Request $request): Response
+    {
+        if (!$this->isCsrfTokenValid('basket_update_' . $artBasket->getId(), $request->request->get('_token'))) {
+            throw $this->createAccessDeniedException();
+        }
+
+        if ($artBasket->getBasket()->getUser() !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $quantity = (int) $request->request->get('quantity');
+
+        if ($quantity <= 0) {
+            $em->remove($artBasket);
+        } else {
+            $artBasket->setAmount($quantity);
+        }
+
+        $em->flush();
+
+        return $this->redirectToRoute('app_my_basket');
+    }
+
     #[Route('/remove/{id}', name: 'app_basket_remove', methods: ['POST'])]
     public function remove(ArtBasket $artBasket, EntityManagerInterface $em, Request $request): Response
     {
