@@ -20,3 +20,9 @@ mot de passe: `testte`
 - [x] Ajout d'une nouvelle catégorie
 - [x] Mise à jour du profil du client connecté
 - [x] A part l'inscription et la mise à jour, la gestion des utilisateurs n'est pas demandée (bonus possible en cas)
+
+## Installation et lien
+
+```
+git clone https://github.com/remabd/Symfony-Art.git
+```
