@@ -5,7 +5,7 @@
             <ul class="nav-links">
                 <li>
                     <a href="{{ path('app_home') }}">
-                        Products
+                       Arts
                     </a>
                 </li>
 
@@ -28,11 +28,11 @@
                 {% endif %}
             {% if app.user %}
                 <a href="{{ path('app_logout') }}" class="nav-btn nav-btn--ghost">
-                    Log out
+                    Déconnexion
                 </a>
             {% else %}
-                <a href="{{ path('app_login') }}" class="nav-btn nav-btn--ghost">Log in</a>
-                <a href="{{ path('app_register') }}" class="nav-btn nav-btn--primary">Register</a>
+                <a href="{{ path('app_login') }}" class="nav-btn nav-btn--ghost">Connexion</a>
+                <a href="{{ path('app_register') }}" class="nav-btn nav-btn--primary">Inscription</a>
             {% endif %}
         </div>
     </nav>

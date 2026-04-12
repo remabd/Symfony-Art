@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Basket index{% endblock %}
+{% block title %}Liste des paniers{% endblock %}
 
 {% block body %}
-    <h1>Basket index</h1>
+    <h1>Liste des paniers</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -17,17 +17,18 @@
             <tr>
                 <td>{{ basket.id }}</td>
                 <td>
-                    <a href="{{ path('app_basket_show', {'id': basket.id}) }}">show</a>
-                    <a href="{{ path('app_basket_edit', {'id': basket.id}) }}">edit</a>
+                    <a href="{{ path('app_basket_show', {'id': basket.id}) }}">Voir</a>
+                    <a href="{{ path('app_basket_edit', {'id': basket.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="2">no records found</td>
+                <td colspan="2">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_basket_new') }}">Create new</a>
+    <a href="{{ path('app_basket_new') }}">Créer un nouveau panier</a>
+    <a href="{{ path('app_admin') }}">Retour au backoffice</a>
 {% endblock %}

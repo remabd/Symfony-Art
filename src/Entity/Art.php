@@ -22,6 +22,9 @@ class Art
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $picture = null;
+
     #[ORM\Column]
     private ?int $price = null;
 
@@ -65,6 +68,18 @@ class Art
     public function setContent(string $content): static
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): static
+    {
+        $this->picture = $picture;
 
         return $this;
     }

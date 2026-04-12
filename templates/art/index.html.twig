@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Art index{% endblock %}
+{% block title %}Liste des arts{% endblock %}
 
 {% block body %}
-    <h1>Art index</h1>
+    <h1>Liste des arts</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Content</th>
-                <th>Price</th>
-                <th>actions</th>
+                <th>Nom</th>
+                <th>Contenu</th>
+                <th>Prix</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -23,17 +23,18 @@
                 <td>{{ art.content }}</td>
                 <td>{{ art.price }}</td>
                 <td>
-                    <a href="{{ path('app_art_show', {'id': art.id}) }}">show</a>
-                    <a href="{{ path('app_art_edit', {'id': art.id}) }}">edit</a>
+                    <a href="{{ path('app_art_show', {'id': art.id}) }}">Voir</a>
+                    <a href="{{ path('app_art_edit', {'id': art.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_art_new') }}">Create new</a>
+    <a href="{{ path('app_art_new') }}">Créer un nouvel art</a>
+    <a href="{{ path('app_admin') }}">Retour au backoffice</a>
 {% endblock %}

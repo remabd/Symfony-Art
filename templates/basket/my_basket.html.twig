@@ -4,18 +4,18 @@
 
 {% block body %}
 <main class="basket-page">
-    <h1>My Basket</h1>
+    <h1>Mon panier</h1>
 
     {% if basket is null or basket.arts is empty %}
-        <p class="basket-empty">Your basket is empty.</p>
+        <p class="basket-empty">Votre panier est vide.</p>
     {% else %}
         <table class="basket-table">
             <thead>
                 <tr>
-                    <th>Product</th>
-                    <th>Unit price</th>
-                    <th>Quantity</th>
-                    <th>Subtotal</th>
+                    <th>Art</th>
+                    <th>prix</th>
+                    <th>Quantité</th>
+                    <th>Sous total</th>
                     <th></th>
                 </tr>
             </thead>
@@ -32,7 +32,7 @@
                         <td>
                             <form method="post" action="{{ path('app_basket_remove', {id: artBasket.id}) }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token('basket_remove_' ~ artBasket.id) }}">
-                                <button type="submit" class="btn btn--danger">Remove</button>
+                                <button type="submit" class="btn btn--danger">Supprimer</button>
                             </form>
                         </td>
                     </tr>
@@ -46,9 +46,9 @@
             </tfoot>
         </table>
 
-        <a href="#" class="btn btn--primary basket-checkout">Checkout</a>
+        <a href="#" class="btn btn--primary basket-checkout">Paiement</a>
     {% endif %}
 
-    <a href="{{ path('app_home') }}" class="btn btn--ghost">← Continue shopping</a>
+    <a href="{{ path('app_home') }}" class="btn btn--ghost">← Revenir aux arts</a>
 </main>
 {% endblock %}
